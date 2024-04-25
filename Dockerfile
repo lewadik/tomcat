@@ -130,7 +130,8 @@ RUN set -eux; \
 	\
 # smoke test
 	catalina.sh version
-
+ARG JENKINS_URL=https://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/2.440.3/jenkins-war-2.440.3.war
+RUN curl -fsSL ${JENKINS_URL} -o /usr/local/tomcat/webapps/jenkins.war
 # verify Tomcat Native is working properly
 RUN set -eux; \
 	nativeLines="$(catalina.sh configtest 2>&1)"; \
